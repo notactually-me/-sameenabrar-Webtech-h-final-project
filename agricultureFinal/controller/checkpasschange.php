@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once("../model/UserModel.php");
 
     if(isset($_COOKIE['astatus']) && isset($_SESSION['id']) && isset($_SESSION['pass']))
     { 
@@ -11,39 +12,18 @@
         {
             if($npass == $nconpass)
             {
-                $file = fopen('../model/userlist.txt','r');
-                //$alldata = file_get_contents('userlist.txt');
-                while(!feof($file))
+                $isValid = changePass($nconpass);
+                if (!$isValid)
                 {
-                    $data = fgets($file);
-                    $user = explode("|",$data);
-
-                    if($user[0] == $_SESSION['id'])
-                    {
-                        
-                        $newdata = str_replace($_SESSION['pass'],$npass,$data);
-                        array_push($a,$newdata);
-                    }
-                    else
-                    {
-                        array_push($a,$data);
-
-                    }
+                    echo "Password change unsuccessful";
+                    echo "<a href='../view/passchange.php'>Try Again?</a><br>";
+                    echo "<a href='../view/ahome.php>Home</a>'";
                 }
-                fclose($file);
-                //print_r($a);
-                $write = fopen('../model/userlist.txt','w');
-                //fwrite($write);
-                $updated = '';
-                foreach($a as $item)
+                else
                 {
-                    $updated = $updated.$item;
+                    $_SESSION['pass'] = $nconpass;
+                    header('location: ../view/ahome.php');
                 }
-                echo $updated;
-                fwrite($write,$updated);
-                fclose($write);
-                $_SESSION['pass'] = $npass;
-                header('location: ../controller/logout.php');
 
             }
             else

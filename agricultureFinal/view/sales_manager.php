@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once('../model/salesModel.php');
     if(isset($_COOKIE['astatus']) && isset($_SESSION['id']) && isset($_SESSION['pass']))
     {
     
@@ -16,27 +17,9 @@
                 <th>Email</th><th>Date of Birth</th><th>Experience</th><th>Education</th><th>Degree</th><th>Salary</th>
             </tr>
             <?php
-                $file = fopen('../model/managerList.txt','r');
-        
-                $userdata = array();
-                while(!feof($file))
-                {
-                    $data = fgets($file);
-                    $user = explode("|",$data);
-                    
-                    
-                    if($data != null)
-                    {
-                        echo "<tr style='text-align: center'>";
-                            for($i = 0; $i<count($user); $i++)
-                            {
-                                echo "<td>".$user[$i]."</td>";
-                            }
-                        echo "</tr>";
-                    }
-                    
-                }
-                fclose($file);
+
+                viewSales();
+                
             
             ?>
         </table>

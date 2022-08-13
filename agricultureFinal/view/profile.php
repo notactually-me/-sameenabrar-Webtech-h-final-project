@@ -1,48 +1,18 @@
 <?php
     session_start();
+    require_once("../model/regModel.php");
     if(isset($_COOKIE['astatus']) && isset($_SESSION['id']) && isset($_SESSION['pass']))
-    {
-        $file = fopen('../model/reglist.txt','r');
-        
-        $userdata = array();
-        while(!feof($file))
-        {
-            $data = fgets($file);
-            $user = explode("|",$data);
-            
-            if($user[0] == $_SESSION['id'])
-            {
-                foreach($user as $item)
-                {
-                    array_push($userdata,$item);
-                }
+    {       
 
-            }
-        }
-        fclose($file);
-
-        $skillset = fopen('../model/skill_list.txt', 'r');
-        $skill = array();
-        while(!feof($skillset))
-        {
-            $data = fgets($skillset);
-            $user = explode("|",$data);
-            
-            if($user[0] == $_SESSION['id'])
-            {
-                foreach($user as $item)
-                {
-                    array_push($skill, $item);
-                }
-
-            }
-        }
-        $skills = implode(', ', array_slice($skill,3));
+        $userdata = fetchData($_SESSION['id']);        
 
     
 ?>
 <html>
-    <head><title>User Profile</title></head>
+    <head>
+        <title>User Profile</title>
+        <script defer src="../asset/editProfile.js"></script>
+    </head>
     <body>
         <a href="../view/ahome.php">Go Home</a>
 
@@ -95,10 +65,11 @@
 
             <tr style="height: 30px;">
                 <td>Skills:</td>
-                <td><?php echo $skills; ?></td>
+                <td><?php echo $userdata[10]; ?></td>
             </tr>
         </table>
         <fieldset style="width:37.7%">
+        <div>
             <legend>Update Profile</legend>
             <form action="../controller/profile_edit.php" method="post">
                 <table>
@@ -107,8 +78,8 @@
                         <td>
                         <select name="heading" id="edit">
                                 <option value="">Choose Value</option>
-								<option value="Name">Name</option>	
-								<option value="Phone number"> Phone number</option>
+                                <option value="Name">Name</option>	
+                                <option value="Phone number"> Phone number</option>
                                 <option value="Email">Email</option>
                                 <option value="DOB">DOB</option>
                                 <option value="Address">Address</option>
@@ -116,16 +87,17 @@
                                 <option value="Degree">Degree</option>
                                 <!-- <option value="Skills">Skills</option>	 -->
                                 
-							</select>
+                        </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Change to: </td>
                         <td><input type="text" name="toChange" id="edit" placeholder="Type new data"/></td>
                     </tr>
-                    <tr><td><input type="Submit" name="submit" value="Apply changes"></td></tr>
+                    <tr><td><input type="button" name="submit" value="Apply changes"></td></tr>
                 </table>
-            
+            </form>
+        </div>
         </fieldset>
     </body>
 </html>

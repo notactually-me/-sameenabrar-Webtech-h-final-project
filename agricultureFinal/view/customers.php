@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once('../model/customerModel.php');
     if(isset($_COOKIE['astatus']) && isset($_SESSION['id']) && isset($_SESSION['pass']))
     {
     
@@ -16,28 +17,7 @@
                 <th>Email</th><th>Date of Birth</th><th>Total Expenditure</th>
             </tr>
             <?php
-                $file = fopen('../model/customerList.txt','r');
-        
-                $userdata = array();
-                while(!feof($file))
-                {
-                    $data = fgets($file);
-                    $user = explode("|",$data);
-                    
-                    
-                    if($data != null)
-                    {
-                        echo "<tr style='text-align: center'>";
-                            for($i = 0; $i<count($user); $i++)
-                            {
-                                echo "<td>".$user[$i]."</td>";
-                            }
-                        echo "</tr>";
-                    }
-                    
-                }
-                fclose($file);
-            
+                viewCustomers();
             ?>
         </table>
         <br>

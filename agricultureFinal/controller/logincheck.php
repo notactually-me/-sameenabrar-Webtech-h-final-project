@@ -5,11 +5,11 @@ require_once('../model/UserModel.php');
 $username =  $_REQUEST['username'];
 $password = $_REQUEST['password'];
 
-// echo $username.$password;
 
 if($username == null || $password == null)
 {
 	echo "null username/password...";
+	echo "<br><a href='../view/login.php'>Login</a>";
 }
 else
 {
@@ -23,6 +23,7 @@ else
 	else
 	{
 		echo "incorrect username/password";
+		echo "<br><a href='../view/login.php'>Login</a>";
 	}
 }
 

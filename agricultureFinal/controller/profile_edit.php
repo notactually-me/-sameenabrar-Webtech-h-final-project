@@ -1,5 +1,7 @@
 <?php
     session_start();
+    require_once("../model/regModel.php");
+    require_once("../model/UserModel.php");
 
     if(isset($_COOKIE['astatus']) && isset($_SESSION['id']) && isset($_SESSION['pass']))
     { 
@@ -24,32 +26,6 @@
             $new = $_REQUEST['toChange'];
             $a = array();
             
-            $file = fopen('../model/regList.txt','r');
-            $ufile = fopen('../model/userlist.txt','r');
-            $ua = array();
-
-            while(!feof($ufile))
-            {
-                $udata = fgets($ufile);
-                $uuser = explode("|",$udata);
-
-                if($uuser[0] == $_SESSION['id'])
-                {
-                    if($heading == "Name")
-                    {
-                        $name = str_replace($uuser[2],$new,$udata)."\r\n";
-                        array_push($ua,$name);
-                        $_SESSION['name'] = $new;
-                    }
-                }
-                else
-                {
-                    array_push($ua,$udata);
-
-                }
-
-
-            }
             
             while(!feof($file))
             {

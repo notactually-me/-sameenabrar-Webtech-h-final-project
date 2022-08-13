@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once('../model/inventoryModel.php');
     if(isset($_COOKIE['astatus']) && isset($_SESSION['id']) && isset($_SESSION['pass']))
     {
     
@@ -16,27 +17,29 @@
                 <th>Stock</th>
             </tr>
             <?php
-                $file = fopen('../model/inventoryList.txt','r');
+
+                viewInventory();
+                // $file = fopen('../model/inventoryList.txt','r');
         
-                $userdata = array();
-                while(!feof($file))
-                {
-                    $data = fgets($file);
-                    $user = explode("|",$data);
+                // $userdata = array();
+                // while(!feof($file))
+                // {
+                //     $data = fgets($file);
+                //     $user = explode("|",$data);
                     
                     
-                    if($data != null)
-                    {
-                        echo "<tr style='text-align: center'>";
-                            for($i = 0; $i<count($user); $i++)
-                            {
-                                echo "<td>".$user[$i]."</td>";
-                            }
-                        echo "</tr>";
-                    }
+                //     if($data != null)
+                //     {
+                //         echo "<tr style='text-align: center'>";
+                //             for($i = 0; $i<count($user); $i++)
+                //             {
+                //                 echo "<td>".$user[$i]."</td>";
+                //             }
+                //         echo "</tr>";
+                //     }
                     
-                }
-                fclose($file);
+                // }
+                // fclose($file);
             
             ?>
         </table>
