@@ -28,11 +28,40 @@
     function fetchData($userid)
     {
         $conn = getconnection();
-		$sql = "select * from registrationtable where UserID='{$userid}'";
+		$sql = "select * from registrationtable where UserID='{$userid}';";
 		$result = mysqli_query($conn, $sql);
 		$data = $result->fetch_array();
 		$count = mysqli_num_rows($result);
         return $data;
+    }
+
+    function updateData($userdata, $id)
+    {
+        echo $id;
+        $conn = getconnection();
+		$sql = "UPDATE registrationtable 
+                SET 
+                name='{$userdata->name}',
+                email='{$userdata->email}',
+                phone='{$userdata->phone}',
+                address='{$userdata->address}',
+                dob='{$userdata->dob}',
+                gender='{$userdata->gender}',
+                degree='{$userdata->degree}',
+                experience='{$userdata->ep}',
+                skills='{$userdata->skills}' 
+                where UserID='{$id}';";
+
+        $sqluser = "UPDATE usertable SET name='{$userdata->name}' WHERE where UserID='{$id}';";
+
+		$result = mysqli_query($conn, $sql);
+		$resultuser = mysqli_query($conn, $sqluser);
+		// $data = $result->fetch_array();
+		// $count = mysqli_num_rows($result);
+        // return $data;
+
+
+
     }
 ?>
 

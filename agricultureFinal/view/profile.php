@@ -1,5 +1,6 @@
 <?php
     session_start();
+    // include("../asset/editProfile.js");
     require_once("../model/regModel.php");
     if(isset($_COOKIE['astatus']) && isset($_SESSION['id']) && isset($_SESSION['pass']))
     {       
@@ -11,16 +12,22 @@
 <html>
     <head>
         <title>User Profile</title>
-        <script defer src="../asset/editProfile.js"></script>
+        <script defer src="../asset/ProfileEdit.js"></script>
+        <link rel="stylesheet" href="../asset/profileStyle.css">
+        
     </head>
     <body>
         <a href="../view/ahome.php">Go Home</a>
-
         <table border="1px" style="width:40%">
-            <tr><th colspan="2">Profile</th></tr>
+
+            <tr><th colspan="2">Profile <div id="editButton"><input type="button" name="edit" id="editb" value="edit" onclick="EditOpt()"/></div></th></tr>
             <tr style="height: 30px;">
                 <td style="width: 50%;">Name:</td>
-                <td><?php echo $userdata[2]; ?></td>
+                <td>
+                    <div id="namediv">
+                        <?php echo $userdata[2]; ?>
+                    </div>
+                </td>
             </tr>
 
             <tr style="height: 30px;">
@@ -30,75 +37,77 @@
 
             <tr style="height: 30px;">
                 <td>Email:</td>
-                <td><?php echo $userdata[3]; ?></td>
+                <td>
+                    <div id="emaildiv">
+                        <?php echo $userdata[3]; ?>
+                    </div>
+                </td>
             </tr>
 
             <tr style="height: 30px;">
                 <td>Date Of Birth:</td>
-                <td><?php echo $userdata[6]; ?></td>
+                <td>
+                    <div id="dobdiv">
+                        <?php echo $userdata[6]; ?>
+                    </div>
+                </td>
             </tr>
 
             <tr style="height: 30px;">
                 <td>Gender:</td>
-                <td><?php echo $userdata[7]; ?></td>
+                <td>
+                    <div id="genderdiv">
+                        <?php echo $userdata[7]; ?>
+                    </div>
+                </td>
             </tr>
 
             <tr style="height: 30px;">
                 <td>Address:</td>
-                <td><?php echo $userdata[5]; ?></td>
+                <td>
+                    <div id="addressdiv">
+                        <?php echo $userdata[5]; ?>
+                    </div>
+                </td>
             </tr>
 
             <tr style="height: 30px;">
                 <td>Phone:</td>
-                <td><?php echo $userdata[4]; ?></td>
+                <td>
+                    <div id="phonediv">
+                        <?php echo $userdata[4]; ?>
+                    </div>
+                </td>
             </tr>
 
             <tr style="height: 30px;">
                 <td>Degree:</td>
-                <td><?php echo $userdata[8]; ?></td>
+                <td>
+                    <div id="degreediv">
+                        <?php echo $userdata[8]; ?>
+                    </div>
+                </td>
             </tr>
 
             <tr style="height: 30px;">
                 <td>Years of experience:</td>
-                <td><?php echo $userdata[9]; ?> years</td>
+                <td>
+                    <div id="epdiv">
+                        <?php echo $userdata[9]; ?>
+                    </div>
+                    years
+                </td>
             </tr>
 
             <tr style="height: 30px;">
                 <td>Skills:</td>
-                <td><?php echo $userdata[10]; ?></td>
+                <td>
+                    <div id="skillsdiv">
+                        <?php echo $userdata[10]; ?>
+                    </div>
+                </td>
             </tr>
         </table>
-        <fieldset style="width:37.7%">
-        <div>
-            <legend>Update Profile</legend>
-            <form action="../controller/profile_edit.php" method="post">
-                <table>
-                    <tr>
-                        <td>Detail to Update: </td>
-                        <td>
-                        <select name="heading" id="edit">
-                                <option value="">Choose Value</option>
-                                <option value="Name">Name</option>	
-                                <option value="Phone number"> Phone number</option>
-                                <option value="Email">Email</option>
-                                <option value="DOB">DOB</option>
-                                <option value="Address">Address</option>
-                                <option value="Experience">Experience</option>
-                                <option value="Degree">Degree</option>
-                                <!-- <option value="Skills">Skills</option>	 -->
-                                
-                        </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Change to: </td>
-                        <td><input type="text" name="toChange" id="edit" placeholder="Type new data"/></td>
-                    </tr>
-                    <tr><td><input type="button" name="submit" value="Apply changes"></td></tr>
-                </table>
-            </form>
-        </div>
-        </fieldset>
     </body>
 </html>
 <?php
