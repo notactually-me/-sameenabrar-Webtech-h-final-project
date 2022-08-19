@@ -1,17 +1,21 @@
 <?php
     session_start();
+    require_once('../model/salesModel.php');
+
+    $data = $_POST['data'];
+    $userdata = json_decode($data);
 
     if(isset($_COOKIE['astatus']) && isset($_SESSION['id']) && isset($_SESSION['pass']))
     { 
 
         // Required field names
-        $required = array('id', 'name','email' ,'phone', 'dob','gender','distribution','degree','education','epyears','salary');
+        // $required = array('id', 'name','email' ,'phone', 'dob','gender','distribution','degree','education','epyears','salary');
         //$id_found = false;
         // Loop over field names, make sure each one exists and is not empty
         $error = false;
-        foreach($required as $field) 
+        foreach($userdata as $field) 
         {
-            if (empty($_POST[$field])) 
+            if (empty($field)) 
             {
                 $error = true;
                 break;
@@ -27,26 +31,7 @@
         }
         else
         {
-            //personal info
-            $id = $_REQUEST["id"];
-            $name = $_REQUEST["name"];
-            $email = $_REQUEST["email"];
-            $phone = $_REQUEST["phone"];
-            $dob = $_REQUEST["dob"];
-            $gender = $_REQUEST["gender"];
-            //job details
-            $degree = $_REQUEST["degree"];
-            $experience = $_REQUEST["epyears"]." years";
-            $education = $_REQUEST["education"];
-            $distribution = $_REQUEST["distribution"];           
-            $salary = $_REQUEST["salary"];
-            $file = fopen('../model/managerList.txt','a');
-
-            $user = $id."|".$name."|"."Salesperson"."|".$distribution."|".$gender."|".$phone."|".$email."|".$dob."|".$experience."|".$education."|".$degree."|".$salary."\r\n";
-            
-            fwrite($file,$user);
-            header('location: ../view/sales_manager.php');
-            fclose($file);
+            addManager($userdata);
         }
 
         //fclose($file);

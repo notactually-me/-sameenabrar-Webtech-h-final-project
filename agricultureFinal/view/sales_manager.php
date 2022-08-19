@@ -6,12 +6,41 @@
     
 ?>
 <html>
-    <head><title>Manager List</title></head>
+    <head>
+        <title>Manager List</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+        <script defer src="../asset/ManagerScript.js"></script>
+        <link rel="stylesheet" href="../asset/ManagerStyle.css">
+    </head>
     <body>
         <a href="../view/ahome.php">Go Home</a>
 
-        <table border="1px" style="width:85%">
-            <tr><th colspan="12">Sales Manager</th></tr>
+        <table border="1px" style="width:85%" id="table">
+            <tr>
+                <th colspan="12">Sales Manager 
+                <div id="editSales">
+                <table>
+                        <tr>
+                            <td>
+                                <button id="updatebutton" onclick="updateSales()">
+                                    Update Details
+                                </button>
+                            </td>
+
+                            <td>
+                                <input type="button" value="Add Manager" onclick="addManager()">
+                            </td>
+
+                            <td>
+                                <button id="deletebutton" onclick="deleteManager()">Delete Manager</button>
+                                                         
+                            </td>
+
+                        </tr>
+                 </table>
+                </div>
+                </th>
+            </tr>
             <tr>
                 <th>ID</th><th>Name</th><th>User Type</th><th>Distribution</th><th>Gender</th><th>Phone Number</th>
                 <th>Email</th><th>Date of Birth</th><th>Experience</th><th>Education</th><th>Degree</th><th>Salary</th>
@@ -24,28 +53,7 @@
             ?>
         </table>
         <br>
-        <table>
-            <tr>
-                <td>
-                    <form action="../view/editSalesManager.php" method="post">
-                        <input type="Submit" value="Update details">
-                    </form>
-                </td>
-
-                <td>
-                    <form action="../view/addSalesManager.php" method="post">
-                        <input type="Submit" value="Add Manager">
-                    </form>                            
-                </td>
-
-                <td>
-                    <form action="../view/delSalesManager.php" method="post">
-                        <input type="Submit" value="Delete Manager">
-                    </form>                            
-                </td>
-
-            </tr>
-        </table>
+        <div id="edit"></div>
     </body>
 </html>
 <?php

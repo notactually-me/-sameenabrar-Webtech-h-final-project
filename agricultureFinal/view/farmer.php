@@ -7,11 +7,39 @@
 ?>
 <html>
     <head><title>Farmer List</title></head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+    <script defer src="../asset/FarmerScript.js"></script>
+    <link rel="stylesheet" href="../asset/FarmerStyle.css">
     <body>
         <a href="../view/ahome.php">Go Home</a>
 
-        <table border="1px" style="width:85%">
-            <tr><th colspan="10">Farmer list</th></tr>
+        <table border="1px" style="width:85%" id="table">
+            <tr>
+                <th colspan="10">
+                Farmer list
+                <div id="editFarmer">
+                <table>
+                        <tr>
+                            <td>
+                                <button id="updatebutton" onclick="updateFarmer()">
+                                    Update Details
+                                </button>
+                            </td>
+
+                            <td>
+                                <input type="button" value="Add Farmer" onclick="addFarmer()">
+                            </td>
+
+                            <td>
+                                <button id="deletebutton" onclick="deleteFarmer()">Delete Farmer</button>
+                                                         
+                            </td>
+
+                        </tr>
+                 </table>
+                </div>
+                </th>
+            </tr>
             <tr>
                 <th>ID</th><th>Name</th><th>User Type</th><th>Gender</th><th>Phone Number</th>
                 <th>Email</th><th>Date of Birth</th><th>Experience</th><th>Number of Fields</th><th>Salary</th>
@@ -19,53 +47,12 @@
             <?php
 
                 viewFarmer();
-                // $file = fopen('../model/farmerList.txt','r');
-        
-                // $userdata = array();
-                // while(!feof($file))
-                // {
-                //     $data = fgets($file);
-                //     $user = explode("|",$data);
-                    
-                    
-                //     if($data != null)
-                //     {
-                //         echo "<tr style='text-align: center'>";
-                //             for($i = 0; $i<count($user); $i++)
-                //             {
-                //                 echo "<td>".$user[$i]."</td>";
-                //             }
-                //         echo "</tr>";
-                //     }
-                    
-                // }
-                // fclose($file);
             
             ?>
         </table>
         <br>
-        <table>
-            <tr>
-                <td>
-                    <form action="../view/updateFarmer.php" method="post">
-                        <input type="Submit" value="Update details">
-                    </form>
-                </td>
-
-                <td>
-                    <form action="../view/addFarmer.php" method="post">
-                        <input type="Submit" value="Add Farmer">
-                    </form>                            
-                </td>
-
-                <td>
-                    <form action="../view/delFarmer.php" method="post">
-                        <input type="Submit" value="Delete Farmer">
-                    </form>                            
-                </td>
-
-            </tr>
-        </table>
+        
+        <div id="edit"></div>
         
     </body>
 </html>
