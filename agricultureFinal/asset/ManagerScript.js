@@ -1,10 +1,12 @@
+
+// let flag = false;
 $(document).ready(function()
 {
 
     // updateFarmer();
     $(document).on('click','#table tbody .data', function()
     {
-        let flag = false;
+        // let flag = false;
         
         var id = $(this).find('td:eq(0)').text();
         var name = $(this).find('td:eq(1)').text();
@@ -35,12 +37,12 @@ $(document).ready(function()
             if(gender == 'Male')
             {
                 document.getElementById('genderinputm').checked = true;
-                flag = false;
+                // flag = false;
             }
             else
             {
                 document.getElementById('genderinputf').checked = true;
-                flag = true;
+                // flag = true;
             } 
 
             if(document.getElementById('updatebutton').clicked == true)
@@ -125,6 +127,7 @@ function updateSales()
 // function to update changes made
 function change()
 {    
+    let flag = false;
     let userdata = [];
     let years = document.getElementById('editep').value.toString() + " years";
 
@@ -164,27 +167,48 @@ function change()
                         'degree':document.getElementById('editdegree').value
                     };
     }
-    let json = JSON.stringify(userdata);
 
-    console.log(json);
-
-    let xhttp = new XMLHttpRequest();
+    const error = " is empty";
     
-    xhttp.open('POST', '../controller/SalesEdit.php', true);
-    xhttp.onreadystatechange = function()
+    for (var key in userdata) 
     {
-
-        if(this.readyState == 4 && this.status == 200)
+        // console.log(userdata[key]);
+        if(userdata[key] === "")
+        {            
+            alert(key+error);
+            flag = true;
+            break;
+        }
+        else 
         {
-            location.reload();
-            console.log(123);
-            document.getElementById('edit').innerHTML = this.responseText; 
-            // alert('works');
-        }             
+            flag = false;
+        }
     }
-    
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-    xhttp.send('data='+json);
+
+    if(!flag)
+    {
+        let json = JSON.stringify(userdata);
+
+        console.log(json);
+
+        let xhttp = new XMLHttpRequest();
+        
+        xhttp.open('POST', '../controller/SalesEdit.php', true);
+        xhttp.onreadystatechange = function()
+        {
+
+            if(this.readyState == 4 && this.status == 200)
+            {
+                location.reload();
+                console.log(123);
+                document.getElementById('edit').innerHTML = this.responseText; 
+                // alert('works');
+            }             
+        }
+        
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+        xhttp.send('data='+json);
+    }
      
                     
 }
@@ -202,33 +226,45 @@ function deleteManager()
 
 function confirmDelete()
 {
+    let flag = false;
     id = document.getElementById('editid').value;
-    confirmation = confirm("Are you sure you want to delete the user?");
 
-    if (confirmation == true)
+    if (id == "")
     {
-        console.log(id);
-
-        let xhttp = new XMLHttpRequest();
-    
-        xhttp.open('POST', '../controller/deletorSales.php', true);
-        xhttp.onreadystatechange = function()
-        {
-
-            if(this.readyState == 4 && this.status == 200)
-            {
-                document.getElementById('edit').innerHTML = this.responseText; 
-                location.reload();
-            }             
-        }
+            alert("Please select id to drop");
+            flag = true;
         
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-        xhttp.send("ID="+id);
+    }
+    else
+    {
+        confirmation = confirm("Are you sure you want to delete the user?");
 
-    }
-    else{
-        console.log('not delete');
-    }
+        if (confirmation == true)
+        {
+            console.log(id);
+
+            let xhttp = new XMLHttpRequest();
+        
+            xhttp.open('POST', '../controller/deletorSales.php', true);
+            xhttp.onreadystatechange = function()
+            {
+
+                if(this.readyState == 4 && this.status == 200)
+                {
+                    document.getElementById('edit').innerHTML = this.responseText; 
+                    location.reload();
+                }             
+            }
+            
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+            xhttp.send("ID="+id);
+        
+        }
+        else
+        {
+            console.log('not delete');
+        }
+    }  
 }
 
 function addManager()
@@ -274,7 +310,7 @@ function addManager()
 
 function Add()
 {
-    
+    let flag = false;
     // alert('add apply button');
 
     let userdata = [];
@@ -317,26 +353,47 @@ function Add()
                     };
     }
 
-    let json = JSON.stringify(userdata);
-
-    console.log(userdata);
-
-    let xhttp = new XMLHttpRequest();
+    const error = " is empty";
     
-    xhttp.open('POST', '../controller/addersales.php', true);
-    xhttp.onreadystatechange = function()
+    for (var key in userdata) 
     {
-
-        if(this.readyState == 4 && this.status == 200)
+        // console.log(userdata[key]);
+        if(userdata[key] === "")
+        {            
+            alert(key+error);
+            flag = true;
+            break;
+        }
+        else 
         {
-            location.reload();
-            console.log(123);
-            document.getElementById('edit').innerHTML = this.responseText; 
-            // alert('works');
-        }             
+            flag = false;
+        }
     }
-    
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-    xhttp.send('data='+json);
+
+
+    if(!flag)
+    {
+        let json = JSON.stringify(userdata);
+
+        console.log(userdata);
+
+        let xhttp = new XMLHttpRequest();
+        
+        xhttp.open('POST', '../controller/addersales.php', true);
+        xhttp.onreadystatechange = function()
+        {
+
+            if(this.readyState == 4 && this.status == 200)
+            {
+                location.reload();
+                console.log(123);
+                document.getElementById('edit').innerHTML = this.responseText; 
+                // alert('works');
+            }             
+        }
+        
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+        xhttp.send('data='+json);
+    }
 }
 

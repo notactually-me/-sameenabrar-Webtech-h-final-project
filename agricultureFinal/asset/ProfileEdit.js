@@ -32,12 +32,12 @@ function EditOpt()
     if(gender == 'Male')
     {
         document.getElementById('genderinputm').checked = true;
-        flag = false;
+        // flag = false;
     }
     else
     {
         document.getElementById('genderinputf').checked = true;
-        flag = true;
+        // flag = true;
     }
 
     document.getElementById("degreediv").innerHTML = "<input type='text' id='degreeinput' '/>";
@@ -84,26 +84,57 @@ function change()
                         'ep':document.getElementById("epinput").value
                     };
     }
-    let json = JSON.stringify(userdata);
 
-    console.log(userdata);
+    // let field;
+    // for(field in userdata)
+    // {
+    //     alert(field);
+    //     if (field == null)
+    //     {
+    //         alert('field cannot be empty');
+    //         break;
+    //     }
+    // }
 
-    let xhttp = new XMLHttpRequest();
-    //xhttp.open('GET', 'userCheck.php?username='+username, true);
-    xhttp.open('POST', '../controller/profile_edit.php', true);
-    xhttp.onreadystatechange = function()
-    {
-
-        if(this.readyState == 4 && this.status == 200)
-        {
-            // document.getElementById('editButton').innerHTML = this.responseText;
-            // history.back();
-            location.reload();
-        }             
-    }
+    const error = " is empty";
     
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-    xhttp.send('data='+json);
-     
+    for (var key in userdata) 
+    {
+        // console.log(userdata[key]);
+        if(userdata[key] === "")
+        {            
+            alert(key+error);
+            flag = true;
+            break;
+        }
+        else 
+        {
+            flag = false;
+        }
+    }
+
+
+    if(!flag)
+    {
+        let json = JSON.stringify(userdata);
+        console.log(userdata);
+
+        let xhttp = new XMLHttpRequest();
+        //xhttp.open('GET', 'userCheck.php?username='+username, true);
+        xhttp.open('POST', '../controller/profile_edit.php', true);
+        xhttp.onreadystatechange = function()
+        {
+
+            if(this.readyState == 4 && this.status == 200)
+            {
+                // document.getElementById('editButton').innerHTML = this.responseText;
+                // history.back();
+                location.reload();
+            }             
+        }
+        
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+        xhttp.send('data='+json);
+    }    
                     
 }

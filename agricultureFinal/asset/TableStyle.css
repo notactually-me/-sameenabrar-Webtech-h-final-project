@@ -89,7 +89,7 @@ color: white;
 table
 {
   border-collapse: collapse;
-  text-align: center;
+  /* text-align: center; */
 }
 
 th
@@ -190,4 +190,10 @@ color: white;
 {
     display: inline-block;
 
+}
+
+.changepass
+{
+  border-style : hidden!important;
+  
 }

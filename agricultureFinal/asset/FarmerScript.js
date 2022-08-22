@@ -72,7 +72,7 @@ function updateFarmer()
     <fieldset style="width:82.5%">
             <legend id="legend">Update Farmer</legend>
             <form action="../controller/editorFarmer.php" method="post">
-                <table id='hide'>
+                <table>
                     
                     <tr>
                         <td>ID: </td>
@@ -120,6 +120,7 @@ function updateFarmer()
 // function to update changes made
 function change()
 {    
+    let flag = false;
     let userdata = [];
     let years = document.getElementById('editep').value.toString() + " years";
 
@@ -154,25 +155,46 @@ function change()
                         'salary':document.getElementById('editsalary').value
                     };
     }
-    let json = JSON.stringify(userdata);
 
-    console.log(userdata);
 
-    let xhttp = new XMLHttpRequest();
+    const error = " is empty";
     
-    xhttp.open('POST', '../controller/editorFarmer.php', true);
-    xhttp.onreadystatechange = function()
+    for (var key in userdata) 
     {
-
-        if(this.readyState == 4 && this.status == 200)
+        // console.log(userdata[key]);
+        if(userdata[key] === "")
+        {            
+            alert(key+error);
+            flag = true;
+            break;
+        }
+        else 
         {
-            location.reload();
-        }             
+            flag = false;
+        }
     }
-    
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-    xhttp.send('data='+json);
-     
+
+    if(!flag)
+    {
+        let json = JSON.stringify(userdata);
+
+        console.log(userdata);
+
+        let xhttp = new XMLHttpRequest();
+        
+        xhttp.open('POST', '../controller/editorFarmer.php', true);
+        xhttp.onreadystatechange = function()
+        {
+
+            if(this.readyState == 4 && this.status == 200)
+            {
+                location.reload();
+            }             
+        }
+        
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+        xhttp.send('data='+json);
+     }
                     
 }
 
@@ -190,30 +212,39 @@ function deleteFarmer()
 function confirmDelete()
 {
     id = document.getElementById('editid').value;
+
+
+    if(id === "")
+    {
+        alert("Please select id to drop");
+    }
+    else
+    {
     confirmation = confirm("Are you sure you want to delete the user?");
 
     if (confirmation == true)
     {
-        console.log(id);
+            console.log(id);
 
-        let xhttp = new XMLHttpRequest();
-    
-        xhttp.open('POST', '../controller/deletorFarmer.php', true);
-        xhttp.onreadystatechange = function()
-        {
-
-            if(this.readyState == 4 && this.status == 200)
-            {
-                location.reload();
-            }             
-        }
+            let xhttp = new XMLHttpRequest();
         
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-        xhttp.send("ID="+id);
+            xhttp.open('POST', '../controller/deletorFarmer.php', true);
+            xhttp.onreadystatechange = function()
+            {
 
-    }
-    else{
-        console.log('not delete');
+                if(this.readyState == 4 && this.status == 200)
+                {
+                    location.reload();
+                }             
+            }
+            
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+            xhttp.send("ID="+id);
+
+        }
+        else{
+            console.log('not delete');
+        }
     }
 }
 
@@ -232,15 +263,15 @@ function addFarmer()
 
     if(idnum.toString().length = 1)
     {
-        newid = "S-00" + idnum.toString();
+        newid = "F-00" + idnum.toString();
     }
     else if(idnum.toString().length = 2)
     {
-        newid = "S-0" + idnum.toString();
+        newid = "F-0" + idnum.toString();
     }
     else if(idnum.toString().length = 3)
     {
-        newid = "S-" + idnum.toString();
+        newid = "F-" + idnum.toString();
     }
 
 
@@ -262,7 +293,7 @@ function Add()
 {
     
     // alert('add apply button');
-
+    let flag = false;
     let userdata = [];
     let years = document.getElementById('editep').value.toString() + " years";
 
@@ -303,25 +334,46 @@ function Add()
                     };
     }
 
-    let json = JSON.stringify(userdata);
 
-    console.log(userdata);
-
-    let xhttp = new XMLHttpRequest();
+    const error = " is empty";
     
-    xhttp.open('POST', '../controller/adderfarmer.php', true);
-    xhttp.onreadystatechange = function()
+    for (var key in userdata) 
     {
-
-        if(this.readyState == 4 && this.status == 200)
+        // console.log(userdata[key]);
+        if(userdata[key] === "")
+        {            
+            alert(key+error);
+            flag = true;
+            break;
+        }
+        else 
         {
-            location.reload();
-            console.log(123);
-            document.getElementById('edit').innerHTML = this.responseText; 
-            // alert('works');
-        }             
+            flag = false;
+        }
     }
-    
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-    xhttp.send('data='+json);
+
+    if(!flag)
+    {
+        let json = JSON.stringify(userdata);
+
+        console.log(userdata);
+
+        let xhttp = new XMLHttpRequest();
+        
+        xhttp.open('POST', '../controller/adderfarmer.php', true);
+        xhttp.onreadystatechange = function()
+        {
+
+            if(this.readyState == 4 && this.status == 200)
+            {
+                location.reload();
+                console.log(123);
+                document.getElementById('edit').innerHTML = this.responseText; 
+                // alert('works');
+            }             
+        }
+        
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+        xhttp.send('data='+json);
+    }
 }

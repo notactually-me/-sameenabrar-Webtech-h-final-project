@@ -52,7 +52,7 @@
                 skills='{$userdata->skills}' 
                 where UserID='{$id}';";
 
-        $sqluser = "UPDATE usertable SET name='{$userdata->name}' WHERE where UserID='{$id}';";
+        $sqluser = "UPDATE usertable SET name='{$userdata->name}' WHERE UserID='{$id}';";
 
 		$result = mysqli_query($conn, $sql);
 		$resultuser = mysqli_query($conn, $sqluser);

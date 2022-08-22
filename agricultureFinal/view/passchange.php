@@ -7,11 +7,13 @@
     <head>
         <title>Change Password</title>
         <link rel="stylesheet" href="../asset/TableStyle.css">
+        <script defer src="../asset/LoginScript.js"></script>
     </head>
 
-    <form action="../controller/checkpasschange.php" method="post">
-    <table>
+    <form action="../controller/checkpasschange.php" method="post" onsubmit="return changeValid(this)">
+    <table class='changepass'>
         <tr><td><a href="../view/ahome.php">Home</a></td></tr>
+        <tr><td><div id="message"></div></td></tr>
         <tr><td>Current Password:</td></tr>
         <tr><td><input type="password" name="currpassword" id="login" value="" placeholder="Enter your current password"/></td></tr>
         

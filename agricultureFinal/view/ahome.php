@@ -9,6 +9,7 @@
 <head><title>Home</title></head>
 <link rel="stylesheet" href="../asset/TableStyle.css">
 <body>
+    <center>
     <table>
     <tr>
         <td><a href="../view/profile.php"> View Profile</a></td>
@@ -32,7 +33,7 @@
         </tr>
         
     </table>
-    
+    </center>
     </body>
 </html>
 <?php

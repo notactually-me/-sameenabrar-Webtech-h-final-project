@@ -26,7 +26,7 @@
         {
             // echo $datauser->name;
             $userupdate = updateData($userdata, $_SESSION['id']);
-            header('location: ../view/profile.php');            
+            // header('location: ../view/profile.php');            
         }
         else
         {

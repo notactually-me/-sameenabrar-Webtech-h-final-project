@@ -91,7 +91,8 @@ function updateInventory()
 
 // function to update changes made
 function change()
-{    
+{   
+    let flag = false; 
     let userdata = [];
 
     if(document.getElementById('genderinputf').checked == true)
@@ -114,25 +115,46 @@ function change()
                         'status':document.getElementById('genderinputm').value
                     };
     }
-    let json = JSON.stringify(userdata);
 
-    console.log(userdata);
-
-    let xhttp = new XMLHttpRequest();
+    const error = " is empty";
     
-    xhttp.open('POST', '../controller/iupdator.php', true);
-    xhttp.onreadystatechange = function()
+    for (var key in userdata) 
     {
-
-        if(this.readyState == 4 && this.status == 200)
+        console.log(userdata[key]);
+        if(userdata[key] === "")
+        {            
+            alert(key+error);
+            flag = true;
+            break;
+        }
+        else 
         {
-            location.reload();
-            // document.getElementById("edit").innerHTML = this.responseText;
-        }             
+            flag = false;
+        }
     }
-    
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-    xhttp.send('data='+json);
+
+    if(!flag)
+    {
+        let json = JSON.stringify(userdata);
+
+        console.log(userdata);
+
+        let xhttp = new XMLHttpRequest();
+        
+        xhttp.open('POST', '../controller/iupdator.php', true);
+        xhttp.onreadystatechange = function()
+        {
+
+            if(this.readyState == 4 && this.status == 200)
+            {
+                location.reload();
+                // document.getElementById("edit").innerHTML = this.responseText;
+            }             
+        }
+        
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+        xhttp.send('data='+json);
+    }
      
                     
 }
@@ -151,31 +173,39 @@ function deleteInventory()
 function confirmDelete()
 {
     id = document.getElementById('editid').value;
-    confirmation = confirm("Are you sure you want to delete the user?");
 
-    if (confirmation == true)
+    if(id == "")
     {
-        console.log(id);
-
-        let xhttp = new XMLHttpRequest();
-    
-        xhttp.open('POST', '../controller/ideletor.php', true);
-        xhttp.onreadystatechange = function()
-        {
-
-            if(this.readyState == 4 && this.status == 200)
-            {
-                location.reload();
-                // document.getElementById("edit").innerHTML = this.responseText;
-            }             
-        }
-        
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-        xhttp.send("ID="+id);
-
+        alert("Please enter id to drop");
     }
-    else{
-        console.log('not delete');
+    else
+    {
+        confirmation = confirm("Are you sure you want to delete the user?");
+
+        if (confirmation == true)
+        {
+            console.log(id);
+
+            let xhttp = new XMLHttpRequest();
+        
+            xhttp.open('POST', '../controller/ideletor.php', true);
+            xhttp.onreadystatechange = function()
+            {
+
+                if(this.readyState == 4 && this.status == 200)
+                {
+                    location.reload();
+                    // document.getElementById("edit").innerHTML = this.responseText;
+                }             
+            }
+            
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+            xhttp.send("ID="+id);
+
+        }
+        else{
+            console.log('not delete');
+        }
     }
 }
 
@@ -221,6 +251,7 @@ function Add()
 {
     
     // alert('add apply button');
+    let flag = false;
 
     let userdata = [];
     // let years = document.getElementById('editep').value.toString() + " years";
@@ -247,25 +278,46 @@ function Add()
                     };
     }
 
-    let json = JSON.stringify(userdata);
 
-    console.log(userdata);
-
-    let xhttp = new XMLHttpRequest();
+    const error = " is empty";
     
-    xhttp.open('POST', '../controller/iadder.php', true);
-    xhttp.onreadystatechange = function()
+    for (var key in userdata) 
     {
-
-        if(this.readyState == 4 && this.status == 200)
+        // console.log(userdata[key]);
+        if(userdata[key] === "")
+        {            
+            alert(key+error);
+            flag = true;
+            break;
+        }
+        else 
         {
-            // location.reload();
-            // console.log(123);
-            document.getElementById('edit').innerHTML = this.responseText; 
-            // alert('works');
-        }             
+            flag = false;
+        }
     }
-    
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
-    xhttp.send('data='+json);
+
+    if(!flag)
+    {
+        let json = JSON.stringify(userdata);
+
+        console.log(userdata);
+
+        let xhttp = new XMLHttpRequest();
+        
+        xhttp.open('POST', '../controller/iadder.php', true);
+        xhttp.onreadystatechange = function()
+        {
+
+            if(this.readyState == 4 && this.status == 200)
+            {
+                // location.reload();
+                // console.log(123);
+                document.getElementById('edit').innerHTML = this.responseText; 
+                // alert('works');
+            }             
+        }
+        
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");     
+        xhttp.send('data='+json);
+    }
 }
