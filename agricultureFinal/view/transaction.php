@@ -9,6 +9,7 @@
     <head><title>Transactions</title></head>
     <body>
         <a href="../view/ahome.php">Go Home</a>
+        <link rel="stylesheet" href="../asset/TableStyle.css">
 
         <table border="1px" style="width:85%">
             <tr><th colspan="9">List of Transactions</th></tr>

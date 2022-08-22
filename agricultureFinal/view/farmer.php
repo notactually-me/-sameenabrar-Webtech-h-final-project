@@ -9,7 +9,7 @@
     <head><title>Farmer List</title></head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
     <script defer src="../asset/FarmerScript.js"></script>
-    <link rel="stylesheet" href="../asset/FarmerStyle.css">
+    <link rel="stylesheet" href="../asset/TableStyle.css">
     <body>
         <a href="../view/ahome.php">Go Home</a>
 
@@ -17,7 +17,7 @@
             <tr>
                 <th colspan="10">
                 Farmer list
-                <div id="editFarmer">
+                <div id="editUser">
                 <table>
                         <tr>
                             <td>

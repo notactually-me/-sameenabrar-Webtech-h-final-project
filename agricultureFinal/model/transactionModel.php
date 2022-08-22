@@ -31,6 +31,53 @@
 
 
     }
+
+    function netAccounts()
+    {
+        $data = array();
+        // $conn = getconnection();
+        // $sql = "SELECT SUM(price) FROM transactionlist WHERE orderStatus = 'Approved';";
+        // $result = mysqli_query($conn, $sql); 
+
+        // $row = $result->fetch_all();
+        $data['netincome'] = netIncome();
+        $data['netcost'] = netCost();
+        $data['netprofit'] = $data['netincome'] - $data['netcost'];
+        // print_r($data); 
+        return $data;
+        
+
+
+
+    }
+
+    function netIncome()
+    {
+        $conn = getconnection();
+        $sql = "SELECT SUM(price) FROM transactionlist WHERE orderStatus = 'Approved';";
+        $result = mysqli_query($conn, $sql); 
+
+        $row = $result->fetch_all();
+        $data = $row[0][0];
+
+        return $data;
+
+    }
+
+    function netCost()
+    {
+        $conn = getconnection();
+        $sql = "SELECT SUM(salary) AS farmersalary FROM farmerlist UNION SELECT SUM(salary) AS salesalary FROM saleslist;";
+        $result = mysqli_query($conn, $sql); 
+        $row = $result->fetch_all();
+        $data = $row[0][0]+$row[1][0];
+
+        return $data;
+
+    }
+
+
+
 }
 else
 {

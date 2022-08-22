@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Registration</title>
+        <!-- <link rel="stylesheet" href="../asset/TableStyle.css"> -->
     </head>
     <!-- <body style="padding-left: 420px;"> -->
     <body>

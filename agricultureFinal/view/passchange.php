@@ -4,6 +4,10 @@
     { 
 ?>
 <html>
+    <head>
+        <title>Change Password</title>
+        <link rel="stylesheet" href="../asset/TableStyle.css">
+    </head>
 
     <form action="../controller/checkpasschange.php" method="post">
     <table>

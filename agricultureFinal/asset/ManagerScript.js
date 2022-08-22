@@ -4,12 +4,6 @@ $(document).ready(function()
     // updateFarmer();
     $(document).on('click','#table tbody .data', function()
     {
-        // let clicked = document.getElementById('updatebutton').clicked;
-        // var lastid = $(this).closest('table').find('tr').last().find('td').first().text();
-        // const splitid = lastid.split('-');
-        // console.log('last id = ', splitid);
-
-
         let flag = false;
         
         var id = $(this).find('td:eq(0)').text();
@@ -78,10 +72,10 @@ function updateSales()
                         <td id='userid'><input type="text" name="changeID" id="editid" placeholder="Enter ID to update" readonly/></td>
 
                         <td>Phone: </td>
-                        <td><input type="number" name="changeID" id="editnum" placeholder="Enter ID to update"/></td>
+                        <td><input type="number" name="changeID" min="0" id="editnum" placeholder="Enter ID to update"/></td>
 
                         <td>Experience: </td>
-                        <td><input type="number" name="changeID" id="editep" placeholder="Enter ID to update"/></td>
+                        <td><input type="number" name="changeID" id="editep" min="0" placeholder="Enter ID to update"/></td>
 
                     </tr>
                     
@@ -116,7 +110,7 @@ function updateSales()
                         <td><input type="text" name="changeID" id="editdegree" placeholder="Enter ID to update"/></td>
 
                         <td>Salary: </td>
-                        <td><input type="number" name="changeID" id="editsalary" placeholder="Enter ID to update"/></td>
+                        <td><input type="number" name="changeID" min="0" id="editsalary" placeholder="Enter ID to update"/></td>
                     </tr>
 
                     <tr><td id="applyChanges"><input type="button" name="submit" value="Apply changes" onclick="change()"></td></tr>
@@ -272,7 +266,7 @@ function addManager()
     updateSales();
     
     document.getElementById('legend').innerHTML = 'Add Manager';
-    document.getElementById('edittype').value = 'Farmer';
+    document.getElementById('edittype').value = 'Salesperson';
     document.getElementById('editid').value = newid;
     document.getElementById('applyChanges').innerHTML = '<input type="button" name="submit" value="Apply changes" onclick="Add()">';
 

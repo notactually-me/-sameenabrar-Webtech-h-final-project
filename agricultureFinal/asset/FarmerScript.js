@@ -72,7 +72,7 @@ function updateFarmer()
     <fieldset style="width:82.5%">
             <legend id="legend">Update Farmer</legend>
             <form action="../controller/editorFarmer.php" method="post">
-                <table>
+                <table id='hide'>
                     
                     <tr>
                         <td>ID: </td>

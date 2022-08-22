@@ -15,7 +15,7 @@
                     while ($user = mysqli_fetch_row($result))
                     {
                         // $user = $result->fetch_array();
-                        echo "<tr style='text-align: center'>";
+                        echo "<tr style='text-align: center' class = 'data'>";
                             for($i = 0; $i<count($user); $i++)
                             {
                                 //echo "<br>";

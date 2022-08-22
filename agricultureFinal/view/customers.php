@@ -7,10 +7,11 @@
 ?>
 <html>
     <head><title>Customers</title></head>
+    <link rel="stylesheet" href="../asset/TableStyle.css">
     <body>
         <a href="../view/ahome.php">Go Home</a>
 
-        <table border="1px" style="width:85%">
+        <table border="1px" style="width:85%" id="table">
             <tr><th colspan="8">Customers List</th></tr>
             <tr>
                 <th>ID</th><th>Name</th><th>User Type</th><th>Gender</th><th>Phone Number</th>

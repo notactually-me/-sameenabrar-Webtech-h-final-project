@@ -10,7 +10,7 @@
         <title>Manager List</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script defer src="../asset/ManagerScript.js"></script>
-        <link rel="stylesheet" href="../asset/ManagerStyle.css">
+        <link rel="stylesheet" href="../asset/TableStyle.css">
     </head>
     <body>
         <a href="../view/ahome.php">Go Home</a>
@@ -18,7 +18,7 @@
         <table border="1px" style="width:85%" id="table">
             <tr>
                 <th colspan="12">Sales Manager 
-                <div id="editSales">
+                <div id="editUser">
                 <table>
                         <tr>
                             <td>

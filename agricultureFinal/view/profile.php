@@ -13,7 +13,7 @@
     <head>
         <title>User Profile</title>
         <script defer src="../asset/ProfileEdit.js"></script>
-        <link rel="stylesheet" href="../asset/profileStyle.css">
+        <link rel="stylesheet" href="../asset/TableStyle.css">
         
     </head>
     <body>

@@ -7,6 +7,7 @@
 ?>
 <html>
 <head><title>Home</title></head>
+<link rel="stylesheet" href="../asset/TableStyle.css">
 <body>
     <table>
     <tr>
